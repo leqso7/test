@@ -779,63 +779,90 @@ font-size: 16px;
     }
 }
 
-/* მობილური ოპტიმიზაცია */
-@media screen and (max-width: 768px) {
-    .container {
+/* მობილური ოპტიმიზაციისთვის ახალი სტილები */
+@media screen and (max-width: 400px) {
+    .input-container {
+        position: static;
         width: 95%;
         margin: 10px auto;
-        padding: 15px;
-        max-height: 90vh;
-    }
-
-    h1 {
-        font-size: 24px;
-        margin: 10px 0;
     }
 
     #nameInput {
         width: 100%;
-        margin: 10px 0;
         padding: 8px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
-    .input-container {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: 100%;
-        margin-bottom: 15px;
+    button {
+        padding: 6px 10px;
+        font-size: 13px;
+        margin: 3px;
+        min-height: 25px;
     }
 
     #groupSizeOptions {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-        gap: 5px;
-        margin: 10px 0;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3px;
+        padding: 5px;
     }
 
     #groupSizeOptions button {
-        padding: 8px;
+        font-size: 12px;
+        padding: 5px;
+        min-width: auto;
+    }
+
+    .name {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .group {
+        font-size: 13px;
+        margin: 3px 0;
+    }
+
+    .enlarged .group {
+        font-size: 24px;
+    }
+
+    #timer {
         font-size: 14px;
-        min-height: 40px;
+        padding: 5px 8px;
+        bottom: 5px;
+        right: 5px;
     }
 
-    .names-container {
-        max-height: 50vh;
-        overflow-y: auto;
-    }
-}
-
-/* დამატებითი ოპტიმიზაცია პატარა ეკრანებისთვის */
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 20px;
+    #shutdownVideo {
+        width: 35px;
+        height: 35px;
+        bottom: 5px;
+        left: 5px;
     }
 
-    button {
+    #downloadButton {
         padding: 6px 12px;
+        font-size: 13px;
+        bottom: 10px;
+        left: 50px;
+    }
+
+    .container {
+        padding: 10px;
+        margin: 5px;
+        max-height: 85vh;
+    }
+
+    #nameCounter {
         font-size: 14px;
+        padding: 3px;
+        margin: 5px 0;
+    }
+
+    .winner {
+        font-size: 2.5em;
+        padding: 15px;
     }
 }
   </style>
@@ -920,6 +947,7 @@ try {
   });
 } catch (error) {
   console.error('Error updating used passwords:', error);
+}
 }
 
 async function checkPassword() {
@@ -1115,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function distributeGroups(groupSize) {
   // Prevent group creation if group size equals or is greater than the number of students
   if (groupSize >= students.length) {
-      alert(`გუფი ვერ შეიქმნება ${groupSize}-იანი, სტუდენტების რაოდენბა ძალიან ცოტაა.`);
+      alert(`გუფი ვერ შეიქმნება ${groupSize}-იანი, სტუდენ��ების რაოდენბა ძალიან ცოტაა.`);
       return;
   }
 
@@ -1359,7 +1387,7 @@ window.addEventListener('beforeunload', function() {
     // localStorage.removeItem('countdownTime');
 });
 
-// დავამატოთ ტაიმერის ელემენტი HTML-ში თუ არ არსებობს
+// დავამაოთ ტაიერის ელემენტი HTML-ში თუ არ არსებობს
 if (!document.getElementById('timer')) {
     const timerElement = document.createElement('div');
     timerElement.id = 'timer';
@@ -2199,6 +2227,7 @@ function showShutdownState() {
  passwordForm.style.display = 'block'; // გამოჩნდეს პაროლის ფორმა 
  
  
+ 
  // ვიდეო გაწვდოს
  const shutdownVideo = document.getElementById('shutdownVideo');
  shutdownVideo.style.display = 'block'; // ვიდეო გამოჩნდეს
@@ -2386,7 +2415,7 @@ document.addEventListener('DOMContentLoaded', function() {
         viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
     }
     
-    // Touch ივენთების ოპტიმიზაცია
+    // Touch ივენების ოპტიმიზაცია
     document.addEventListener('touchstart', function() {}, {passive: true});
     
     // Double tap პრევენცია
@@ -2416,7 +2445,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // სოფთ კიბორდის დახურვისას ეკრანის ასწორება
+    // სოფთ კიბორდის დახურვისას ეკრანის ასწ��რება
     const nameInput = document.getElementById('nameInput');
     if (nameInput) {
         nameInput.addEventListener('blur', () => {
@@ -2466,7 +2495,7 @@ $(document).on('touchstart', '.your-button-class', function(e) {
     e.preventDefault();
 });
 
-// ალტერნატიულად, შეგვიძლია გამოვიყენოთ click ივენთ touch-ის ნაცვლად:
+// ალტერნატიულად, შეგვიძლია გამოვიყენოთ click ივენთი touch-ის ნაცვლად:
 document.querySelector('.your-button-class').addEventListener('click', function(e) {
     e.preventDefault();
     // თქვენი კოდი აქ
@@ -2535,7 +2564,7 @@ function askGroupChoice(number) {
 function createGroupsByStudentCount(studentsPerGroup) {
     const totalStudents = students.length;
     
-    // გა���ოვთვალოთ ჯგუფების რაოდენობა
+    // გამოვთვალოთ ჯგუფების რაოდენობა
     const numberOfGroups = Math.ceil(totalStudents / studentsPerGroup);
     
     // გამოვთვალოთ მინიმალური რაოდენობა თითო ჯგუფში
@@ -2565,7 +2594,7 @@ function createGroupsByStudentCount(studentsPerGroup) {
 
 function displayGroups(groups) {
     const groupsHTML = groups.map((group, index) => 
-        `<div class="group">გუფი ${index + 1}: ${group.join(', ')}</div>`
+        `<div class="group">ჯგუფი ${index + 1}: ${group.join(', ')}</div>`
     ).join('');
 
     groupsList.innerHTML = groupsHTML;
@@ -2590,7 +2619,7 @@ function createGroupsByGroupCount(numberOfGroups) {
     
     let currentIndex = 0;
     
-    // პირველ რიგში გავანაწლოთ მიიმლური რაოდენობა ყველა ჯგუფში
+    // პირველ რიგში გავანაწილოთ მიიმალური რაოდენობა ყველა ჯგუფში
     for (let i = 0; i < numberOfGroups; i++) {
         groups[i] = shuffledStudents.slice(currentIndex, currentIndex + minStudentsPerGroup);
         currentIndex += minStudentsPerGroup;
