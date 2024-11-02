@@ -778,6 +778,66 @@ font-size: 16px;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     }
 }
+
+/* მობილური ოპტიმიზაცია */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+        max-height: 90vh;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+
+    #nameInput {
+        width: 100%;
+        margin: 10px 0;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .input-container {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    #groupSizeOptions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+        gap: 5px;
+        margin: 10px 0;
+    }
+
+    #groupSizeOptions button {
+        padding: 8px;
+        font-size: 14px;
+        min-height: 40px;
+    }
+
+    .names-container {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+}
+
+/* დამატებითი ოპტიმიზაცია პატარა ეკრანებისთვის */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    button {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}
   </style>
 </head>
 <body style="background-color: white;"><div id="product-content" style="display: block;">
@@ -860,7 +920,6 @@ try {
   });
 } catch (error) {
   console.error('Error updating used passwords:', error);
-}
 }
 
 async function checkPassword() {
@@ -2061,7 +2120,7 @@ function distributeGroups(groupSize) {
 
   // მოდფიცირებული pairStudentsButton-ი event listener
   pairStudentsButton.addEventListener('click', showClassTemplateDialog);
-  // ოდიფიცი��ებული pairStudentsButton-ის event listener
+  // ოდიფიციებული pairStudentsButton-ის event listener
   pairStudentsButton.addEventListener('click', showClassTemplateDialog);function downloadSite() {
       const htmlContent = document.documentElement.outerHTML;
       const templatesData = JSON.stringify(templates);
@@ -2161,7 +2220,7 @@ async function checkPassword() {
  } 
 }
 
-// შევამოწმოთ ავს თუ არ�� წვდომა
+// შევამოწმოთ ავს თუ არ წვდომა
 if (!localStorage.getItem('accessApproved')) {
     // თუ რ აქვს წვდომა, გადავამისამართოთ request.html-ზე
     window.location.href = 'request.html';
@@ -2407,7 +2466,7 @@ $(document).on('touchstart', '.your-button-class', function(e) {
     e.preventDefault();
 });
 
-// ალტერნატიულად, შეგვიძლია გამოვიყენოთ click ივენთი touch-ის ნაცვლად:
+// ალტერნატიულად, შეგვიძლია გამოვიყენოთ click ივენთ touch-ის ნაცვლად:
 document.querySelector('.your-button-class').addEventListener('click', function(e) {
     e.preventDefault();
     // თქვენი კოდი აქ
@@ -2476,7 +2535,7 @@ function askGroupChoice(number) {
 function createGroupsByStudentCount(studentsPerGroup) {
     const totalStudents = students.length;
     
-    // გამოვთვალოთ ჯგუფების რაოდენობა
+    // გა���ოვთვალოთ ჯგუფების რაოდენობა
     const numberOfGroups = Math.ceil(totalStudents / studentsPerGroup);
     
     // გამოვთვალოთ მინიმალური რაოდენობა თითო ჯგუფში
@@ -2506,7 +2565,7 @@ function createGroupsByStudentCount(studentsPerGroup) {
 
 function displayGroups(groups) {
     const groupsHTML = groups.map((group, index) => 
-        `<div class="group">ჯგუფი ${index + 1}: ${group.join(', ')}</div>`
+        `<div class="group">გუფი ${index + 1}: ${group.join(', ')}</div>`
     ).join('');
 
     groupsList.innerHTML = groupsHTML;
@@ -2531,7 +2590,7 @@ function createGroupsByGroupCount(numberOfGroups) {
     
     let currentIndex = 0;
     
-    // პირველ რიგში გავანაწილოთ მი���იმალური რაოდენობა ყველა ჯგუფში
+    // პირველ რიგში გავანაწლოთ მიიმლური რაოდენობა ყველა ჯგუფში
     for (let i = 0; i < numberOfGroups; i++) {
         groups[i] = shuffledStudents.slice(currentIndex, currentIndex + minStudentsPerGroup);
         currentIndex += minStudentsPerGroup;
