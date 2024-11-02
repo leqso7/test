@@ -1143,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function distributeGroups(groupSize) {
   // Prevent group creation if group size equals or is greater than the number of students
   if (groupSize >= students.length) {
-      alert(`გუფი ვერ შეიქმნება ${groupSize}-იანი, სტუდენ��ების რაოდენბა ძალიან ცოტაა.`);
+      alert(`გუფი ვერ შეიქმნება ${groupSize}-იანი, სტუდენების რაოდენბა ძალიან ცოტაა.`);
       return;
   }
 
@@ -1254,6 +1254,7 @@ function distributeGroups(groupSize) {
 
   displayGroups(groups);
 }
+
 function distributeGroups(groupSize) {
   // Prevent group creation if conditions are not met
   if (groupSize < 2 || groupSize > 7 || students.length < 4 || students.length > 30) {
@@ -1287,6 +1288,7 @@ function distributeGroups(groupSize) {
 
   displayGroups(groups);
 }
+
 function updateButtonHighlighting() {
   document.querySelectorAll('#groupSizeOptions button').forEach(button => {
       const size = parseInt(button.textContent);
@@ -1306,6 +1308,7 @@ function updateButtonHighlighting() {
       }
   });
 }
+
 // გლობალური ცვლადები
 let countdownTime = 40; // 40 წამი
 let timerInterval;
@@ -1503,7 +1506,7 @@ document.addEventListener('DOMContentLoaded', checkSiteStatus);
       groupSizes[i] = maxGroupSize;
   }
 
-  // შევქმნათ მასვი ჯგუფებისთვის
+  // შევქმნათ ��ასვი ჯგუფებისთვის
   const groups = [];
 
   // არეულად დავლაგოთ სტუდენტები
@@ -2228,6 +2231,7 @@ function showShutdownState() {
  
  
  
+ 
  // ვიდეო გაწვდოს
  const shutdownVideo = document.getElementById('shutdownVideo');
  shutdownVideo.style.display = 'block'; // ვიდეო გამოჩნდეს
@@ -2445,7 +2449,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // სოფთ კიბორდის დახურვისას ეკრანის ასწ��რება
+    // სოფთ კიბორდის დახურვისას ეკრანის ასწრება
     const nameInput = document.getElementById('nameInput');
     if (nameInput) {
         nameInput.addEventListener('blur', () => {
@@ -2631,6 +2635,58 @@ function createGroupsByGroupCount(numberOfGroups) {
     }
     
     displayGroups(groups);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ღილაკების ინიციალიზაცია
+    const pairStudentsButton = document.getElementById('pairStudentsButton');
+    
+    // ვამოწმებთ ღილაკის არსებობას
+    if (pairStudentsButton) {
+        // ვამატებთ click ლისენერს
+        pairStudentsButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            showClassTemplateDialog();
+        });
+        
+        // ვამატებთ touchstart ლისენერს მობილურებისთვის
+        pairStudentsButton.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            showClassTemplateDialog();
+        }, { passive: false });
+        
+        // ვრთავთ ღილაკს
+        pairStudentsButton.disabled = false;
+    }
+    
+    // ვამოწმებთ და ვრთავთ ყველა საჭირო ფუნქციონალს
+    initializeButtons();
+});
+
+// ახალი ფუნქცია ღილაკების ინიციალიზაციისთვის
+function initializeButtons() {
+    const buttons = {
+        pairStudents: document.getElementById('pairStudentsButton'),
+        selectStudent: document.getElementById('selectStudentButton'),
+        download: document.getElementById('downloadButton')
+    };
+    
+    // ვამოწმებთ თითოეულ ღილაკს
+    Object.entries(buttons).forEach(([key, button]) => {
+        if (button) {
+            // ვრთავთ ღილაკს
+            button.disabled = false;
+            
+            // ვამატებთ ვიზუალურ ფიდბექს
+            button.addEventListener('touchstart', function() {
+                this.style.opacity = '0.7';
+            });
+            
+            button.addEventListener('touchend', function() {
+                this.style.opacity = '1';
+            });
+        }
+    });
 }
 </script>
 <script>
